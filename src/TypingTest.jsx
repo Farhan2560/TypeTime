@@ -9,8 +9,12 @@ const WORD_POOL = [
 ];
 
 function generateWords() {
-  const shuffled = [...WORD_POOL].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 30);
+  const arr = [...WORD_POOL];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, 30);
 }
 
 const TIMER_SECONDS = 30;
